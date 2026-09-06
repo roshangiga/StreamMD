@@ -1,4 +1,19 @@
-# Local release verification — 0.1.0
+# Release verification
+
+## 0.1.1
+
+Verified locally on 6 September 2026 with Node 25.8.0. All 54 tests passed,
+including unfinished inline math across core and Vue updates, custom-tag
+boundaries, literal code and escaped currency. The full `release:check` passed
+library and docs builds, type checking, tarball validation, a fresh core-only
+install, installed Vue SSR, strict consumer declarations and a consumer build.
+See the [package evidence](evidence/package-check.json).
+
+The benchmark graph remains the recorded 0.1.0 comparison. No new comparative
+timing or manual browser result is claimed for this patch. GitHub Actions checks
+the published revision on Node 22 and 24, on Windows and Linux.
+
+## 0.1.0
 
 Verified on Windows on 6 September 2026 (local time). This records local proof;
 see [GitHub Actions](https://github.com/roshangiga/StreamMD/actions) for remote CI.
@@ -24,7 +39,7 @@ The release script checks:
 
 The consumer production build was then opened in the browser. Its heading,
 KaTeX expression and requested Mermaid SVG rendered successfully. Evidence:
-[package check](evidence/package-check.json) and
+[package check](evidence/package-check-0.1.0.json) and
 [installed browser check](evidence/installed-browser.json).
 
 ## Browser behavior

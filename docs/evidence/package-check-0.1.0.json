@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-06T09:55:26.522Z",
-  "node": "v25.8.0",
-  "tarball": "streammd-0.1.1.tgz",
+  "timestamp": "2026-09-06T08:45:31.129Z",
+  "node": "v24.19.0",
+  "tarball": "streammd-0.1.0.tgz",
   "files": 95,
   "bytes": 822831,
   "checks": [

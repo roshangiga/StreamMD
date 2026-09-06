@@ -54,7 +54,7 @@ npm pack
 Install the resulting tarball in a Vue 3 application with one command:
 
 ```sh
-npm install /path/to/streammd-0.1.0.tgz
+npm install /path/to/streammd-0.1.1.tgz
 ```
 
 ```vue

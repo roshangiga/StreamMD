@@ -4,6 +4,34 @@ import { createMarkdownEngine, defineTag, renderMath, type TagToken } from '../s
 const engine = createMarkdownEngine()
 
 describe('built-in Markdown completion', () => {
+  it('renders inline math before its closing dollar and continues from original source', () => {
+    const source = 'Value: $x'
+    for (const suffix of ['', '^2', '^2$ today.']) {
+      const html = engine.renderHtml(source + suffix)
+      expect(html).toContain('class="katex"')
+      expect(html).not.toContain('katex-error')
+    }
+    expect(engine.renderHtml(source + '^2$ today.')).toContain('today.')
+    expect(source).toBe('Value: $x')
+  })
+  it('completes inline math inside a tag without modifying attributes', () => {
+    const custom = createMarkdownEngine({ extensions: [defineTag('callout')] })
+    const source = '<callout title="Price $5 and 20~25">\nValue: $x^2\n</callout>'
+    const token = custom.tokenize(source)[0] as TagToken
+    expect(token.attributes.title).toBe('Price $5 and 20~25')
+    expect(custom.renderHtml(source)).toContain('class="katex"')
+  })
+  it.each(['`$x 20~25`', '```text\n$x 20~25', '~~~text\n$x 20~25', '    $x 20~25'])('keeps math and tildes literal in code: %s', source => {
+    const html = engine.renderHtml(source)
+    expect(html).toContain('$x 20~25')
+    expect(html).not.toContain('katex')
+  })
+  it('keeps escaped currency literal and double tilde strikethrough active', () => {
+    const html = engine.renderHtml('Cost \\$5. Range 20~25. ~Draft~ and ~~Removed')
+    expect(html).toContain('Cost $5. Range 20~25. ~Draft~')
+    expect(html).toContain('<del>Removed</del>')
+    expect(html).not.toContain('katex')
+  })
   it('completes emphasis without changing the input', () => {
     const source = '**hello'
     expect(engine.renderHtml(source)).toContain('<strong>hello</strong>')

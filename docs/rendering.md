@@ -34,9 +34,11 @@ Supported delimiters: `$...$`, `$$...$$`, `\(...\)`, `\[...\]` and
 `\begin{equation}...\end{equation}`. Chemistry uses `\ce{...}` and units use
 `\pu{...}` through KaTeX mhchem. Math works inside table cells and list items.
 
-Single dollars mean math. Escape currency dollars or use inline code to avoid
-ambiguous paired currency amounts. Unfinished or invalid math can remain literal
-or show KaTeX's error text. Do not promise every TeX package is supported.
+Single dollars mean math. Open `$...` and `$$...` expressions receive temporary
+closing delimiters during rendering. Escape currency dollars as `\$5` or use
+inline code to keep them literal. Other delimiters require their closing pair.
+Invalid math can remain literal or show KaTeX's error text; completion does not
+repair missing TeX braces or commands.
 
 KaTeX uses untrusted mode, per-render macros, a maximum 1,000 macro expansions and
 maximum size 20. Built-in aliases include `\R`, `\N`, `\Z`, `\Q` and `\C`.

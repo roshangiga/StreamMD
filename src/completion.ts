@@ -1,6 +1,6 @@
 import remend from 'remend'
 
-const options = { linkMode: 'text-only' as const, singleTilde: false }
+const options = { linkMode: 'text-only' as const, singleTilde: true, inlineKatex: true }
 const tagNames = '[a-zA-Z][a-zA-Z0-9-]*'
 // Locate tag boundaries while skipping code. This does not tokenize Markdown;
 // Remend repairs prose and the existing Marked extensions still own all parsing.

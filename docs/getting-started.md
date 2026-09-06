@@ -1,7 +1,7 @@
 # Getting started
 
 Build with Node 22.12+ using `npm ci && npm run build`. Run `npm pack` to create a
-tarball, then install it in your project with `npm install /path/to/streammd-0.1.0.tgz`.
+tarball, then install it in your project with `npm install /path/to/streammd-0.1.1.tgz`.
 The package is not on npm yet; do not confuse it with the unrelated `stream-md`.
 
 ## Vue

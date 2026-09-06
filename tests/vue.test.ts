@@ -6,6 +6,19 @@ import MarkdownRenderer from '../src/MarkdownRenderer.vue'
 import TokenView from '../src/components/TokenTree.vue'
 import { createMarkdownEngine, defineTag } from '../src/core'
 
+it('renders unfinished inline math across Vue content updates and reset', async () => {
+  const wrapper = mount(MarkdownRenderer, { props: { content: 'Value: $x' } })
+  expect(wrapper.findAll('.katex')).toHaveLength(1)
+  await wrapper.setProps({ content: 'Value: $x^2' })
+  expect(wrapper.find('.katex annotation').text()).toBe('x^2')
+  await wrapper.setProps({ content: 'Value: $x^2$ done.' })
+  expect(wrapper.findAll('.katex')).toHaveLength(1)
+  expect(wrapper.text()).toContain('done.')
+  await wrapper.setProps({ content: '' })
+  expect(wrapper.find('.katex').exists()).toBe(false)
+  wrapper.unmount()
+})
+
 it('renders GFM and math through the Vue component', () => {
   const wrapper = mount(MarkdownRenderer, { props: { content: '###### Heading\n\n- [x] done\n\n| X | Y |\n| --- | ---: |\n| $x^2$ | **bold** |' } })
   expect(wrapper.find('h6').text()).toBe('Heading')

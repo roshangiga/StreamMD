@@ -1,6 +1,6 @@
 {
   "name": "streammd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Markdown for JavaScript and Vue, with built-in completion, math, diagrams and custom extensions.",
   "type": "module",
   "license": "MIT",
