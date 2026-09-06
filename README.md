@@ -1,26 +1,10 @@
 # StreamMD
 
-Fast Markdown rendering optimized for AI token streaming.
+![StreamMD rendering the same mixed Markdown in light mode on the left and dark mode on the right, with text, code, tables and KaTeX math](docs/images/light-dark.jpg)
 
-Render code, tables, KaTeX and Mermaid with consistent light/dark styles. Register
-your own tags and components without importing a chat application.
-Built for JavaScript and Vue, with built-in completion.
+### Fast Markdown rendering optimized for AI token streaming.
 
-<!-- comparison:start -->
-## Benchmarks
-
-| Size | StreamMD | Streamdown |
-| --- | ---: | ---: |
-| 10 KiB | 0.68 s | 0.89 s |
-| 100 KiB | 6.18 s | 15.27 s |
-| 500 KiB | 38.03 s | 274.86 s |
-
-Mixed content, 100 updates. Values are median total times from three trials after warmup, including math, highlighting, diagrams, images and automatic scrolling. The 10/100 KiB runs have no inserted delay; 500 KiB uses a 100 ms delay after each update for both libraries, included in the measured time.
-
-![StreamMD versus Streamdown: median total seconds, lower is better](benchmarks/results/comparison.svg)
-
-[Method and reproduction](benchmarks/comparison/README.md). Raw results: [10 KiB](benchmarks/results/comparison-10-kib.json) · [100 KiB](benchmarks/results/comparison-100-kib.json) · [500 KiB](benchmarks/results/comparison-500-kib.json).
-<!-- comparison:end -->
+Render code, tables, KaTeX and Mermaid with consistent light/dark styles. Register your own tags and components without importing a chat application. Built for JavaScript and Vue, with built-in completion.
 
 ## What is included
 
@@ -42,6 +26,20 @@ These renderers are built into StreamMD; no separate plugin installation is need
 
 StreamMD does not fetch model output, schedule updates, execute code or provide
 chat/tool UI. Pass the accumulated source to `content`; it remains your source.
+
+## Benchmarks
+
+| Size | StreamMD | Streamdown |
+| --- | ---: | ---: |
+| 10 KiB | 0.68 s | 0.89 s |
+| 100 KiB | 6.18 s | 15.27 s |
+| 500 KiB | 38.03 s | 274.86 s |
+
+Mixed content, 100 updates, including math, highlighting, diagrams, images and automatic scrolling. No added delay at 10/100 KiB; 500 KiB adds 100 ms per update for both libraries, counted in the total.
+
+![StreamMD versus Streamdown: median total seconds, lower is better](benchmarks/results/comparison.svg)
+
+[Method and reproduction](benchmarks/comparison/README.md). Raw results: [10 KiB](benchmarks/results/comparison-10-kib.json) · [100 KiB](benchmarks/results/comparison-100-kib.json) · [500 KiB](benchmarks/results/comparison-500-kib.json).
 
 ## Install
 

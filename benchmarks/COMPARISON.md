@@ -6,7 +6,7 @@
 | 100 KiB | 6.18 s | 15.27 s |
 | 500 KiB | 38.03 s | 274.86 s |
 
-Mixed content, 100 updates. Values are median total times from three trials after warmup, including math, highlighting, diagrams, images and automatic scrolling. The 10/100 KiB runs have no inserted delay; 500 KiB uses a 100 ms delay after each update for both libraries, included in the measured time.
+Mixed content, 100 updates, including math, highlighting, diagrams, images and automatic scrolling. No added delay at 10/100 KiB; 500 KiB adds 100 ms per update for both libraries, counted in the total.
 
 All measured and warmup rendering checks passed.
 
