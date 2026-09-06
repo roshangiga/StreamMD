@@ -37,7 +37,7 @@ chat/tool UI. Pass the accumulated source to `content`; it remains your source.
 
 Mixed content, 100 updates, including math, highlighting, diagrams, images and automatic scrolling. No added delay at 10/100 KiB; 500 KiB adds 100 ms per update for both libraries, counted in the total.
 
-![StreamMD versus Streamdown: median total seconds, lower is better](benchmarks/results/comparison.svg)
+![StreamMD versus Streamdown benchmark results](benchmarks/results/streammd-vs-streamdown.svg)
 
 [Method and reproduction](benchmarks/comparison/README.md). Raw results: [10 KiB](benchmarks/results/comparison-10-kib.json) · [100 KiB](benchmarks/results/comparison-100-kib.json) · [500 KiB](benchmarks/results/comparison-500-kib.json).
 

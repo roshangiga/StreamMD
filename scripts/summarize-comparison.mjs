@@ -23,7 +23,7 @@ for (const result of selected) {
 }
 const method = 'Mixed content, 100 updates, including math, highlighting, diagrams, images and automatic scrolling. No added delay at 10/100 KiB; 500 KiB adds 100 ms per update for both libraries, counted in the total.'
 const links = '[10 KiB](benchmarks/results/comparison-10-kib.json) · [100 KiB](benchmarks/results/comparison-100-kib.json) · [500 KiB](benchmarks/results/comparison-500-kib.json)'
-const summary = `## Benchmarks\n\n${table}\n${method}\n\n![StreamMD versus Streamdown: median total seconds, lower is better](benchmarks/results/comparison.svg)\n\n[Method and reproduction](benchmarks/comparison/README.md). Raw results: ${links}.\n`
+const summary = `## Benchmarks\n\n${table}\n${method}\n\n![StreamMD versus Streamdown benchmark results](benchmarks/results/streammd-vs-streamdown.svg)\n\n[Method and reproduction](benchmarks/comparison/README.md). Raw results: ${links}.\n`
 let readme = (await readFile('README.md','utf8')).replace(/\r\n/g,'\n')
 readme = readme.replace(/<!-- comparison:(?:start|end) -->\n?/g,'')
 readme = readme.replace(/\n## Benchmarks\n[\s\S]*?(?=\n## |$)/,'\n')
@@ -31,10 +31,10 @@ readme = readme.replace('\n## Install\n',`\n${summary}\n## Install\n`)
 readme = readme.replace(/\n{3,}(?=## )/g,'\n\n')
 if (!readme.includes(summary)) throw new Error('Could not locate the README benchmark insertion point.')
 await writeFile('README.md',readme)
-await writeFile('benchmarks/COMPARISON.md',`# StreamMD versus Streamdown\n\n${table}\n${method}\n\nAll measured and warmup rendering checks passed.\n\n![Comparison](results/comparison.svg)\n\nBrowser: ${selected[0].userAgent}\n\nReported logical processors: ${selected[0].hardwareConcurrency}.\n\nStreamMD 0.1.0 and Streamdown ${selected[0].versions.streamdown}; Vue ${selected[0].versions.vue}; React ${selected[0].versions.react}.\n\nMeasured ${selected.map(result=>result.timestamp).join(', ')}.\n\n[Method](comparison/README.md) · [Raw results](results/comparison.json)\n`)
+await writeFile('benchmarks/COMPARISON.md',`# StreamMD versus Streamdown\n\n${table}\n${method}\n\nAll measured and warmup rendering checks passed.\n\n![Comparison](results/streammd-vs-streamdown.svg)\n\nBrowser: ${selected[0].userAgent}\n\nReported logical processors: ${selected[0].hardwareConcurrency}.\n\nStreamMD 0.1.0 and Streamdown ${selected[0].versions.streamdown}; Vue ${selected[0].versions.vue}; React ${selected[0].versions.react}.\n\nMeasured ${selected.map(result=>result.timestamp).join(', ')}.\n\n[Method](comparison/README.md) · [Raw results](results/comparison.json)\n`)
 // Independent, zero-based scales make every document size readable.
 const left = 100, width = 550, top = 90
-let chart = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="533" viewBox="0 0 800 533" role="img" aria-labelledby="title desc"><title id="title">StreamMD versus Streamdown</title><desc id="desc">Median total seconds, lower is better. Each size uses its own zero-based scale. ${measurements.map(row=>`${row.kib} KiB: StreamMD ${row.values[0].toFixed(2)}, Streamdown ${row.values[1].toFixed(2)} seconds.`).join(' ')}</desc><rect width="800" height="533" fill="white"/><g font-family="system-ui, sans-serif" font-size="13" fill="#24292f"><text x="24" y="28" font-size="18" font-weight="600">StreamMD vs Streamdown</text><text x="24" y="50">Lower is better · mixed content</text>`
+let chart = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="533" viewBox="0 0 800 533" role="img" aria-labelledby="title desc"><title id="title">StreamMD versus Streamdown</title><desc id="desc">${measurements.map(row=>`${row.kib} KiB: StreamMD ${row.values[0].toFixed(2)}, Streamdown ${row.values[1].toFixed(2)} seconds.`).join(' ')}</desc><rect width="800" height="533" fill="white"/><g font-family="system-ui, sans-serif" font-size="13" fill="#24292f"><text x="24" y="28" font-size="18" font-weight="600">StreamMD vs Streamdown</text><text x="24" y="50">Lower is better · mixed content</text>`
 for(const [index,row] of measurements.entries()) {
   const y=top+index*145
   const scale=scaleLinear().domain([0,Math.max(...row.values)]).range([0,width]).nice(5)
@@ -50,6 +50,6 @@ for(const [index,row] of measurements.entries()) {
   }
 }
 chart+='<rect x="450" y="18" width="12" height="12" fill="#2563eb"/><text x="468" y="29">StreamMD</text><rect x="575" y="18" width="12" height="12" fill="#64748b"/><text x="593" y="29">Streamdown</text></g></svg>'
-await writeFile('benchmarks/results/comparison.svg',chart+'\n')
+await writeFile('benchmarks/results/streammd-vs-streamdown.svg',chart+'\n')
 await writeFile('benchmarks/results/comparison.json',JSON.stringify(selected,null,2)+'\n')
 console.log(table)
