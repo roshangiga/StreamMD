@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@source "./node_modules/streamdown/dist/**/*.js";
+@theme { --color-background: #fff; --color-foreground: #222; --color-muted: #f4f4f4; --color-muted-foreground: #666; --color-border: #ddd; --color-primary: #245da8; --color-primary-foreground: #fff; }
+body { margin: 0; font: 15px/1.6 system-ui; color: #222; background: white; }
+main { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+main > h1 { font-size: 2rem; margin-bottom: 1rem; }
+label, main > button { display: inline-block; margin: 1rem 1rem 1rem 0; }
+select, button { border: 1px solid #bbb; padding: .35rem; }
+#results { max-height: 20rem; overflow: auto; white-space: pre-wrap; font-size: 12px; }
+#fixture { margin-top: 1rem; border-top: 1px solid #bbb; }

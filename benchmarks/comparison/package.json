@@ -1,0 +1,20 @@
+{
+  "name": "streammd-comparison",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node serve.mjs" },
+  "dependencies": {
+    "streamdown": "2.6.0",
+    "@streamdown/math": "1.0.2",
+    "@streamdown/code": "1.1.1",
+    "@streamdown/mermaid": "1.0.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "vue": "3.5.30",
+    "katex": "0.16.25",
+    "vite": "7.3.6",
+    "tailwindcss": "4.2.1",
+    "@tailwindcss/vite": "4.2.1"
+  },
+  "overrides": { "katex": "0.16.25" }
+}

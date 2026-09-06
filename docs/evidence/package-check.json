@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-06T08:45:31.129Z",
+  "node": "v24.19.0",
+  "tarball": "streammd-0.1.0.tgz",
+  "files": 95,
+  "bytes": 822831,
+  "checks": [
+    "tests",
+    "types",
+    "library build",
+    "docs build",
+    "pack manifest",
+    "core-only install without Vue",
+    "core Node import",
+    "Vue SSR from installed package",
+    "installed package TypeScript declarations",
+    "consumer production build"
+  ]
+}
