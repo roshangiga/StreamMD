@@ -43,19 +43,13 @@ Mixed content, 100 updates, including math, highlighting, diagrams, images and a
 
 ## Install
 
-This repository is prepared for its first release. It is not published to npm yet.
-Build a package locally:
+Install the package from the [latest GitHub release](https://github.com/roshangiga/StreamMD/releases/latest):
 
 ```sh
-npm ci
-npm pack
+npm install https://github.com/roshangiga/StreamMD/releases/download/v0.1.1/streammd-0.1.1.tgz
 ```
 
-Install the resulting tarball in a Vue 3 application with one command:
-
-```sh
-npm install /path/to/streammd-0.1.1.tgz
-```
+The package is released on GitHub. It is not published to the npm registry yet.
 
 ```vue
 <script setup>

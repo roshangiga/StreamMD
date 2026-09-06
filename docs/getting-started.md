@@ -1,8 +1,14 @@
 # Getting started
 
-Build with Node 22.12+ using `npm ci && npm run build`. Run `npm pack` to create a
-tarball, then install it in your project with `npm install /path/to/streammd-0.1.1.tgz`.
-The package is not on npm yet; do not confuse it with the unrelated `stream-md`.
+Install the package from the [GitHub release](https://github.com/roshangiga/StreamMD/releases/latest):
+
+```sh
+npm install https://github.com/roshangiga/StreamMD/releases/download/v0.1.1/streammd-0.1.1.tgz
+```
+
+Use Node 22.12+ and Vue 3.5+ for the Vue integration. The JavaScript core does not require Vue. The package is released on GitHub, but is not on the npm registry yet.
+
+To build from source, clone the repository and run `npm ci` followed by `npm pack`.
 
 ## Vue
 
