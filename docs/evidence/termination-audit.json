@@ -1,0 +1,252 @@
+{
+  "checkedAt": "2026-09-06T11:07:47.948Z",
+  "portal": [
+    {
+      "name": "Bold **",
+      "error": false,
+      "matched": true,
+      "text": "Ready"
+    },
+    {
+      "name": "Bold __",
+      "error": false,
+      "matched": true,
+      "text": "Ready"
+    },
+    {
+      "name": "Italic *",
+      "error": false,
+      "matched": true,
+      "text": "Ready"
+    },
+    {
+      "name": "Italic _",
+      "error": false,
+      "matched": true,
+      "text": "Ready"
+    },
+    {
+      "name": "Bold italic",
+      "error": false,
+      "matched": true,
+      "text": "Ready"
+    },
+    {
+      "name": "Inline code",
+      "error": false,
+      "matched": true,
+      "text": "const total = 4"
+    },
+    {
+      "name": "Strikethrough",
+      "error": false,
+      "matched": true,
+      "text": "Draft"
+    },
+    {
+      "name": "Link label",
+      "error": false,
+      "matched": true,
+      "text": "Read the guide"
+    },
+    {
+      "name": "Link destination",
+      "error": false,
+      "matched": true,
+      "text": "Read the guide"
+    },
+    {
+      "name": "Image",
+      "error": false,
+      "matched": true,
+      "text": "Before "
+    },
+    {
+      "name": "Display $$",
+      "error": false,
+      "matched": true,
+      "text": "x2\nx^2\nx2"
+    },
+    {
+      "name": "Inline $",
+      "error": false,
+      "matched": true,
+      "text": "Value: x2x^2x2"
+    },
+    {
+      "name": "Display brackets",
+      "error": false,
+      "matched": true,
+      "text": "Ai=riG\nA_i=\\frac{r_i}{G}Ai​=Gri​​"
+    },
+    {
+      "name": "Inline parentheses",
+      "error": false,
+      "matched": true,
+      "text": "Value: x2x^2x2"
+    },
+    {
+      "name": "Equation environment",
+      "error": false,
+      "matched": true,
+      "text": "xi2\nx_i^2xi2​"
+    },
+    {
+      "name": "Backtick fence",
+      "error": false,
+      "matched": true,
+      "text": "jsconst x = \"**literal\""
+    },
+    {
+      "name": "Tilde fence",
+      "error": false,
+      "matched": true,
+      "text": "jsconst x = \"**literal\""
+    },
+    {
+      "name": "Single tilde",
+      "error": false,
+      "matched": true,
+      "text": "Cost $25; range 20~25; ~Draft~"
+    },
+    {
+      "name": "Nested custom tag",
+      "error": false,
+      "matched": true,
+      "text": "ExplanationWorked ExampleReady"
+    },
+    {
+      "name": "Mermaid source",
+      "error": false,
+      "matched": true,
+      "text": "mermaidRungraph LR; A-->B"
+    }
+  ],
+  "streammd": [
+    {
+      "name": "Bold **",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Bold __",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Italic *",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Italic _",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Bold italic",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Inline code",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Strikethrough",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Link label",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Link destination",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Image",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Display $$",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Inline $",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Display brackets",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Inline parentheses",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Equation environment",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Backtick fence",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Tilde fence",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Single tilde",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Nested custom tag",
+      "error": false,
+      "matched": true
+    },
+    {
+      "name": "Mermaid source",
+      "error": false,
+      "matched": true
+    }
+  ],
+  "grpo": [
+    {
+      "name": "Complete TeX, missing outer closer",
+      "emphasis": 0,
+      "errors": 0,
+      "markdownLists": 0,
+      "math": 1
+    },
+    {
+      "name": "Cut inside a fraction",
+      "emphasis": 0,
+      "errors": 1,
+      "markdownLists": 0,
+      "math": 0
+    },
+    {
+      "name": "Final source",
+      "emphasis": 0,
+      "errors": 0,
+      "markdownLists": 0,
+      "math": 1
+    }
+  ],
+  "prefixesChecked": 575,
+  "limitation": "Missing TeX commands, braces, or fraction arguments still need subsequent source text."
+}

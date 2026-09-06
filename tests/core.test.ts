@@ -1,9 +1,46 @@
 import { describe, it, expect } from 'vitest'
+import grpoObjective from './fixtures/grpo-objective.md?raw'
+import { completeMarkdown } from '../src/completion'
 import { marked } from 'marked'
 import { createMarkdownEngine, defineTag, renderMath, type TagToken } from '../src/core'
 const engine = createMarkdownEngine()
 
 describe('built-in Markdown completion', () => {
+  it('preserves every prefix of the supplied GRPO objective and renders its finished TeX', () => {
+    const source = grpoObjective
+    for (let end = 2; end < source.length; end++) {
+      const partial = source.slice(0, end)
+      const body = partial.trimEnd()
+      expect(completeMarkdown(partial, [])).toBe(body + '\\]' + partial.slice(body.length))
+    }
+    expect(completeMarkdown(source, [])).toBe(source)
+    const html = engine.renderHtml(source.slice(0, -2))
+    expect(html).toContain('class="katex"')
+    expect(html).not.toContain('katex-error')
+  })
+  it.each(['\\[\nx_i^2', 'Value: \\(x_i^2', '\\begin{equation}\nx_i^2'])('completes TeX delimiters: %s', source => {
+    const html = engine.renderHtml(source)
+    expect(html).toContain('class="katex"')
+    expect(html).not.toContain('katex-error')
+    expect(html).toContain('x_i^2</annotation>')
+  })
+  it('keeps emphasis around TeX math', () => {
+    const html = engine.renderHtml('**Value \\(x_i^2\\)**')
+    expect(html).toContain('<strong>Value <span class="katex"')
+    expect(html).not.toContain('katex-error')
+  })
+  it('closes TeX math inside a tag before the following answer', () => {
+    const custom = createMarkdownEngine({ extensions: [defineTag('callout')] })
+    const html = custom.renderHtml('<callout>\n\\[\nx_i^2\n</callout>\n\n**Answer')
+    expect(html).toContain('class="katex"')
+    expect(html).toContain('<strong>Answer</strong>')
+    expect(html).not.toContain('katex-error')
+  })
+  it.each(['`\\[x_i`', '```text\n\\[x_i', '~~~text\n\\(x_i', '    \\[x_i'])('keeps TeX delimiters literal in code: %s', source => {
+    const html = engine.renderHtml(source)
+    expect(html).not.toContain('katex')
+    expect(html).toContain('x_i')
+  })
   it('renders inline math before its closing dollar and continues from original source', () => {
     const source = 'Value: $x'
     for (const suffix of ['', '^2', '^2$ today.']) {

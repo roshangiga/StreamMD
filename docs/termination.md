@@ -20,6 +20,7 @@ These examples describe StreamMD's built-in behavior. In the table, `\n` means a
 | Image | `![Preview](https://example.com/im` | Hides the incomplete image. |
 | Display math | `$$\nx^2` | Supplies the closing `$$` so KaTeX can render the expression. |
 | Inline math | `$x^2` | Supplies the closing `$` so KaTeX can render the expression on the same line. |
+| TeX math delimiters | `\[x^2`, `\(x^2` or `\begin{equation}x^2` | Supplies the matching closing delimiter and protects the formula from Markdown parsing. |
 | Fenced code | An opening fence followed by code, without a closing fence | Renders the available code and keeps its contents literal. Backtick and tilde fences are supported. |
 | Custom tag body | `<callout>\n**Ready` | A registered tag can render its unfinished body, including open formatting. |
 
@@ -30,7 +31,7 @@ Single tildes remain literal. Both `20~25` and `~Draft~` display as written; str
 Completion uses a temporary copy of the accumulated Markdown. Your source stays unchanged, and each update can continue the same open span. Code blocks and quoted tag attributes retain their literal contents.
 
 - Completed links become clickable after URL validation. Bare URLs follow [GitHub Flavored Markdown](rendering.md#github-flavored-markdown) rules.
-- Keep inline `$...$` math on one line. Escape currency as `\$5` or put it in code. Other math delimiters require their closing pair; completion does not repair TeX commands or missing braces. See [Math](rendering.md#math).
+- Keep inline `$...$` math on one line. Escape currency as `\$5` or put it in code. Completion supplies outer delimiters, but a formula cut inside a command or fraction still needs the remaining TeX before KaTeX can render it. See [Math](rendering.md#math).
 - Mermaid starts in code view. The **Diagram** button needs valid diagram syntax, which completion does not supply. See [Code and Mermaid](rendering.md#code-and-mermaid).
 - Completion also applies to saved documents. Escape unmatched markers that should remain visible. Lists and tables can change layout as their structure arrives.
 
@@ -85,3 +86,7 @@ Your application supplies the chunks; Vue renders each updated `content` value.
 Register tags with `defineTag` and map them to your own Vue components. An unfinished body exposes `token.complete === false`; nested Markdown still renders. The opening tag must be complete, and quoted attributes retain their values.
 
 See [custom tags and components](extensions.md) for registration and nested rendering examples.
+
+## Verification
+
+The [browser audit](evidence/termination-audit.json) covers 20 syntax cases in StreamMD and the portal integration. Regression tests check every character prefix of a GRPO objective, including preservation of its TeX and rendering before the final `\]` arrives.

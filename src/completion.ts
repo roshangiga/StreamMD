@@ -13,9 +13,47 @@ const boundaryPattern = new RegExp(
 
 function repairBody(source: string): string {
   const body = source.trimEnd()
+  if (!/\\(?:\[|\(|begin\{equation\})/.test(body)) return remend(body, options) + source.slice(body.length)
+  // TeX bracket delimiters are not understood by Remend. Keep each math span
+  // opaque while it repairs surrounding prose, including emphasis across math.
+  const math: string[] = []
+  let marker = '\uE000STREAMMDMATH'
+  while (body.includes(marker)) marker += 'X'
+  const pieces: string[] = []
+  const delimiters = /`+|\\(?:\[|\(|begin\{equation\})/g
+  let start = 0
+  let match: RegExpExecArray | null
+  const escaped = (index: number) => {
+    let slashes = 0
+    while (index > 0 && body[--index] === '\\') slashes++
+    return slashes % 2 === 1
+  }
+  while ((match = delimiters.exec(body))) {
+    if (escaped(match.index)) continue
+    if (match[0][0] === '`') {
+      const closing = new RegExp('(?<!`)' + match[0] + '(?!`)', 'g')
+      closing.lastIndex = delimiters.lastIndex
+      if (!closing.exec(body)) break
+      delimiters.lastIndex = closing.lastIndex
+      continue
+    }
+    const close = match[0] === '\\[' ? '\\]' : match[0] === '\\(' ? '\\)' : '\\end{equation}'
+    let end = body.indexOf(close, delimiters.lastIndex)
+    while (end !== -1 && escaped(end)) end = body.indexOf(close, end + close.length)
+    const next = end === -1 ? body.length : end + close.length
+    const raw = body.slice(match.index, next) + (end === -1 ? close : '')
+    pieces.push(body.slice(start, match.index), `${marker}${math.length}\uE001`)
+    math.push(raw)
+    start = delimiters.lastIndex = next
+  }
+  pieces.push(body.slice(start))
   // Insert synthetic formatting before a wrapper's trailing newline. Marked does
   // not accept emphasis closed after trailing whitespace as inline emphasis.
-  return remend(body, options) + source.slice(body.length)
+  let repaired = remend(pieces.join(''), options)
+  for (let index = 0; index < math.length; index++) {
+    repaired = repaired.replace(`${marker}${index}\uE001`, () => math[index]!)
+  }
+  return repaired + source.slice(body.length)
 }
 
 /** Render-only completion. Never persist this result or feed it into the next chunk. */

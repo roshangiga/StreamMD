@@ -35,8 +35,9 @@ Supported delimiters: `$...$`, `$$...$$`, `\(...\)`, `\[...\]` and
 `\pu{...}` through KaTeX mhchem. Math works inside table cells and list items.
 
 Single dollars mean math. Open `$...` and `$$...` expressions receive temporary
-closing delimiters during rendering. Escape currency dollars as `\$5` or use
-inline code to keep them literal. Other delimiters require their closing pair.
+closing delimiters during rendering. The same applies to `\(...\)`, `\[...\]`
+and `\begin{equation}...\end{equation}`, whose bodies are protected from Markdown
+completion. Escape currency dollars as `\$5` or use inline code to keep them literal.
 Invalid math can remain literal or show KaTeX's error text; completion does not
 repair missing TeX braces or commands.
 

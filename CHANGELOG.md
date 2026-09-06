@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Complete TeX bracket and equation delimiters while protecting their contents from Markdown repair.
+- Preserve emphasis around formulas and custom-tag boundaries.
+- Add the GRPO objective as a regression fixture, checked at every character prefix.
+
 ## 0.1.1
 
 - Complete unfinished inline `$...` math automatically in JavaScript and Vue.
